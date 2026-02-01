@@ -9,55 +9,83 @@ const Navbar = () => {
     const handleLogout = () => {
         localStorage.removeItem("token");
         navigate("/");
+        closeNavbar();
+    };
+
+    // ✅ Close navbar on click
+    const closeNavbar = () => {
+        const navbar = document.getElementById("navbarNav");
+        if (navbar.classList.contains("show")) {
+            navbar.classList.remove("show");
+        }
     };
 
     return (
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark px-3">
-            {/* <NavLink className="navbar-brand" to="/">
-                AdminPanel
-            </NavLink> */}
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+            <div className="container-fluid">
 
-            <button
-                className="navbar-toggler"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarNav"
-            >
-                <span className="navbar-toggler-icon"></span>
-            </button>
+                <NavLink className="navbar-brand fw-bold" to="/dashboard" onClick={closeNavbar}>
+                    Admin Panel
+                </NavLink>
 
-            <div className="collapse navbar-collapse" id="navbarNav">
-                <ul className="navbar-nav me-auto">
+                <button
+                    className="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav"
+                >
+                    <span className="navbar-toggler-icon"></span>
+                </button>
 
-                    <li className="nav-item">
-                        <NavLink className="nav-link" to="/blogs">Blogs</NavLink>
-                    </li>
+                <div className="collapse navbar-collapse" id="navbarNav">
+                    <ul className="navbar-nav me-auto">
 
-                    <li className="nav-item">
-                        <NavLink className="nav-link" to="/portfolio">Portfolio</NavLink>
-                    </li>
-
-                    <li className="nav-item">
-                        <NavLink className="nav-link" to="/career-list">Career</NavLink>
-                    </li>
-
-                    <li className="nav-item">
-                        <NavLink className="nav-link" to="/admin-contacts">Contacts</NavLink>
-                    </li>
-                </ul>
-
-                <ul className="navbar-nav">
-                    {!token ? (
                         <li className="nav-item">
-                            <NavLink className="nav-link" to="/">Login</NavLink>
+                            <NavLink className="nav-link" to="/blogs" onClick={closeNavbar}>
+                                Blogs
+                            </NavLink>
                         </li>
-                    ) : (
+
                         <li className="nav-item">
-                            <button className="btn btn-danger btn-sm" onClick={handleLogout}>
-                                Logout
-                            </button>
+                            <NavLink className="nav-link" to="/portfolio" onClick={closeNavbar}>
+                                Portfolio
+                            </NavLink>
                         </li>
-                    )}
-                </ul>
+
+                        <li className="nav-item">
+                            <NavLink className="nav-link" to="/career-list" onClick={closeNavbar}>
+                                Career
+                            </NavLink>
+                        </li>
+
+                        <li className="nav-item">
+                            <NavLink className="nav-link" to="/admin-contacts" onClick={closeNavbar}>
+                                Contacts
+                            </NavLink>
+                        </li>
+
+                    </ul>
+
+                    <ul className="navbar-nav ms-auto">
+                        {!token ? (
+                            <li className="nav-item">
+                                <NavLink className="nav-link" to="/" onClick={closeNavbar}>
+                                    Login
+                                </NavLink>
+                            </li>
+                        ) : (
+                            <li className="nav-item">
+                                <button
+                                    className="btn btn-outline-light btn-sm"
+                                    onClick={handleLogout}
+                                >
+                                    Logout
+                                </button>
+                            </li>
+                        )}
+                    </ul>
+
+                </div>
             </div>
         </nav>
     );
