@@ -14,6 +14,7 @@ const TeamForm = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const token = localStorage.getItem("token");
+  
 
   useEffect(() => {
     if (id) {
