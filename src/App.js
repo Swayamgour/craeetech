@@ -13,6 +13,8 @@ import CareerForm from "./pages/Career/CareerForm";
 import ContactForm from "./pages/ContactForm/ContactForm";
 import ContactList from "./pages/ContactForm/ContactList";
 import Navbar from "./components/Navbar";
+import TeamForm from "./pages/team/TeamFrom";
+import TeamList from "./pages/team/TeamList";
 
 function AppLayout() {
   const location = useLocation();
@@ -43,6 +45,11 @@ function AppLayout() {
 
         <Route path="/contact" element={<ContactForm />} />
         <Route path="/admin-contacts" element={<PrivateRoute><ContactList /></PrivateRoute>} />
+
+
+        <Route path="/team-form" element={<TeamForm />} />
+        <Route path="/team-form/:id" element={<TeamForm />} />
+        <Route path="/team-list" element={<TeamList />} />
       </Routes>
     </>
   );
